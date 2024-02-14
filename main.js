@@ -1,59 +1,55 @@
-    //Selectors from html
-    let toDoForm = document.querySelector('.todo-form');
-    let toDoInput = document.querySelector('.todo-input');
-    let toDoContainer = document.querySelector('.todo-container'); //Vet inte om vi faktikst behöver denna men skapar en för varje klass
-    let toDoList = document.querySelector('.todo-list');
+//Selectors from html
+let toDoForm = document.querySelector(".todo-form");
+let toDoInput = document.querySelector(".todo-input");
+let toDoContainer = document.querySelector(".todo-container"); //Vet inte om vi faktikst behöver denna men skapar en för varje klass
+let toDoList = document.querySelector(".todo-list");
 
-    let userInput = '';
-  
-    
-    
-    
-    //Event listeners
-    toDoForm.addEventListener('submit', addToDo);
-    
-    //Functions
-    
-    function addToDo(event){
-        event.preventDefault();
-        
-        userInput = toDoInput.value;
+let userInput = "";
 
-        //Skapar nya element från användarens input
-        let toDoDiv = document.createElement('div');
-        toDoDiv.classList.add('toDo');
+//Event listeners
+toDoForm.addEventListener("submit", addToDo);
 
-        // //Skapar checkbox och dess label
-        // let checkbox = document.createElement('input');
-        // checkbox.type = 'checkbox';
-        // checkbox.name = 'checkbox';
-        // checkbox.id = 'checkbox';
-        // checkbox.value = 'checkbox'; // Vet ej om vi behöver ha med value
-    
-        // let label = document.createElement('label');
-        // label.htmlFor = 'id';
+//Functions
+function addToDo(event) {
+  event.preventDefault();
 
-        // label.appendChild(document.createTextNode('Label for checkbox')); // För visibility
+  userInput = toDoInput.value;
 
-        // //Appending till vår nya div
-        // toDoDiv.appendChild(checkbox);
-        // toDoDiv.appendChild(label);
+  //Skapar nya element från användarens input
+  let toDoDiv = document.createElement("div");
+  toDoDiv.classList.add("toDo");
 
-        //Skapar själva listan
-        let newToDoItem = document.createElement('li');
-        newToDoItem.innerText = 'hello world!';
-        // newToDoItem.innerText = userInput; Ändra till sedan
-        newToDoItem.classList.add('toDo-item');
+  //Skapar checkbox och dess label
+  let checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.name = 'checkbox';
+  checkbox.id = 'checkbox';
+  checkbox.value = 'checkbox'; // Vet ej om vi behöver ha med value
 
-        //Kopplar samman div och li.
-        toDoDiv.appendChild(newToDoItem); 
+  let label = document.createElement('label');
+  label.htmlFor = 'id';
 
+  label.appendChild(document.createTextNode('')); // För visibility
 
-        //Skapar ta bort knappen
-        let removeButton = document.createElement('button');
-        removeButton.classList.add('remove-button');  //ändra till emoji i css
-        toDoDiv.appendChild(removeButton);
+  //Appending till vår nya div
+  toDoDiv.appendChild(checkbox);
+  toDoDiv.appendChild(label);
 
-        //Lägger in den nya diven i todoList som finns i html
-        toDoList.appendChild(toDoDiv);
-    }
+  //Skapar själva listan
+  let newToDoItem = document.createElement("li");
+  // newToDoItem.innerText = 'hello world!'; // detta dyker nu upp i debuggern åtminstone.
+  newToDoItem.innerText = userInput;
+  newToDoItem.classList.add("toDo-item");
+
+  //Kopplar samman div och li.
+  toDoDiv.appendChild(newToDoItem);
+
+  //Skapar ta bort knappen
+  let removeButton = document.createElement("button");
+  removeButton.innerText = ""; //ändra till emoji i css
+  removeButton.classList.add("remove-button");
+  toDoDiv.appendChild(removeButton);
+
+  //Lägger in den nya diven i todoList som finns i html
+  toDoList.appendChild(toDoDiv);
+}
