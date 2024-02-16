@@ -11,6 +11,9 @@ let userInput = "";
 toDoForm.addEventListener("submit", addToDo);
 //Ta bort item från listan
 toDoList.addEventListener('click', deleteItem);
+//Markera item som klart
+toDoList.addEventListener('change', markAsCompleted);
+
 
 
 //Functions
@@ -67,4 +70,11 @@ function deleteItem(event){
   let clickedItem = event.target;
   // hämtar parent element till den klickade deleteknappen och tar bort allt där i.
   clickedItem.parentElement.remove(); 
+}
+
+
+function markAsCompleted(event) {
+  let checkbox = event.target;
+  let todoItem = checkbox.parentElement;
+  todoItem.classList.toggle('completed');
 }

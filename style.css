@@ -100,11 +100,18 @@ form,
     color: #272727;
 }
 
+.completed {
+    text-decoration: line-through;
+    color: rgb(182, 182, 182);
+  }
+  
 
 .blue-button {
     font-size: 35px;
     padding: 5px;
     border: none;
+    margin: auto;
+    border: none; 
 }
 
 .remove-button{
