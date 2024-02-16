@@ -12,7 +12,7 @@ toDoForm.addEventListener("submit", addToDo);
 //Functions
 function addToDo(event) {
   event.preventDefault();
-
+  
   userInput = toDoInput.value;
 
   //Skapar nya element från användarens input
@@ -52,4 +52,5 @@ function addToDo(event) {
 
   //Lägger in den nya diven i todoList som finns i html
   toDoList.appendChild(toDoDiv);
+
 }

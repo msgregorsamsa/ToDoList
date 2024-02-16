@@ -63,7 +63,8 @@ form, .todo-input{
 }
 
 /* Skriv javascript som lägger in checkboxen i HTML-dokumentet, som vi sedan kan redigera utseende på i CSS */
-.todo-list {
+.toDo {
+    display:flex;
     list-style-type: none;
     font-size: 25px;
     color: rgb(109, 109, 109);
