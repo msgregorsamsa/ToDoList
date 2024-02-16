@@ -97,3 +97,11 @@ form,
 #checkbox.editCheckbox {
     background-color: blueviolet;
 }
+
+.remove-button{
+    height: 25px;
+    width: 25px;
+    margin: auto;
+    border: none; 
+    background-color: white;
+}

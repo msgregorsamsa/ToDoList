@@ -47,7 +47,7 @@ function addToDo(event) {
 
   //Skapar ta bort knappen
   let removeButton = document.createElement("button");
-  removeButton.innerText = ""; //ändra till emoji i css
+  removeButton.innerText = '❌';
   removeButton.classList.add("remove-button");
   toDoDiv.appendChild(removeButton);
 
