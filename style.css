@@ -105,6 +105,21 @@ form,
     color: rgb(182, 182, 182);
 }
 
+.choices-bar,
+.filters{
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+}
+
+.filters li{
+    margin: 7px;
+    border: 1px solid green;
+	border-radius: 3px;
+}
+
+
+
 
 .blue-button {
     font-size: 35px;
