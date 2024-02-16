@@ -13,7 +13,6 @@ body {
     color: #111111;
     margin: 0 auto;
     font-weight: 300;
-
 }
 
 .todo-app {
@@ -56,6 +55,7 @@ Redigera även storlek på input-text */
 #todo-input:focus {
     /* Styling för input-box är den är markerad*/
     box-shadow: 2px 2px 8px rgb(136, 49, 49);
+    
     outline: none;
 }
 
@@ -94,14 +94,21 @@ form,
     background-color: white;
 }
 
-#checkbox.editCheckbox {
-    background-color: blueviolet;
+.toDo-item {
+    font-size: 25px;
+    padding: 10px;
+    color: #272727;
 }
 
-.remove-button{
-    height: 25px;
-    width: 25px;
-    margin: auto;
-    border: none; 
-    background-color: white;
+.blue-button {
+    font-size: 35px;
+    padding: 5px;
+    border: none;
+}
+
+.editCheckbox {
+    height: 20px;
+    width: 20px;
+    padding-right: 5px;
+    /* margin: 5px; */
 }
