@@ -6,15 +6,17 @@ let toDoList = document.querySelector(".todo-list");
 
 let userInput = "";
 
+// ...
+
 //Event listeners
-//Lägg till item i listan
+// Lägg till item i listan
 toDoForm.addEventListener("submit", addToDo);
-//Ta bort item från listan
+// Ta bort item från listan
 toDoList.addEventListener('click', deleteItem);
-//Markera item som klart
+// Markera som färdigt när checkboxen klickas på 
 toDoList.addEventListener('change', markAsCompleted);
 
-
+// ...
 
 //Functions
 function addToDo(event) {
@@ -22,11 +24,11 @@ function addToDo(event) {
   
   userInput = toDoInput.value;
 
-  //Skapar nya element från användarens input
+  // Skapar nya element från användarens input
   let toDoDiv = document.createElement("div");
   toDoDiv.classList.add("toDo");
 
-  //Skapar checkbox och dess label
+  // Skapar checkbox och dess label
   let checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
   checkbox.name = 'checkbox';
@@ -39,39 +41,41 @@ function addToDo(event) {
 
   label.appendChild(document.createTextNode('')); // För visibility
 
-  //Appending till vår nya div
+  // Appending till vår nya div
   toDoDiv.appendChild(checkbox);
   toDoDiv.appendChild(label);
 
-  //Skapar själva listan
+  // Skapar själva listan
   let newToDoItem = document.createElement("li");
   // newToDoItem.innerText = 'hello world!'; // detta dyker nu upp i debuggern åtminstone.
   newToDoItem.innerText = userInput;
   newToDoItem.classList.add("toDo-item");
 
-  //Kopplar samman div och li.
+  // Kopplar samman div och li
   toDoDiv.appendChild(newToDoItem);
 
-  //Skapar ta bort knappen
+  // Skapar ta bort knappen
   let removeButton = document.createElement('button');
   removeButton.type = 'button';
   removeButton.innerText = '❌';
   removeButton.classList.add("remove-button");
   toDoDiv.appendChild(removeButton);
 
-  //Lägger in den nya diven i todoList som finns i html
+  // Lägger in den nya diven i todoList som finns i html
   toDoList.appendChild(toDoDiv);
 
   toDoInput.value = '';
-
 }
 
-function deleteItem(event){
+function deleteItem(event) {
   let clickedItem = event.target;
-  // hämtar parent element till den klickade deleteknappen och tar bort allt där i.
-  clickedItem.parentElement.remove(); 
-}
 
+  // Kontrollera om klicket var på kryssknappen
+  if (clickedItem.classList.contains('remove-button')) {
+    // hämtar parent element till den klickade deleteknappen och tar bort allt där i.
+    clickedItem.parentElement.remove();
+  }
+}
 
 function markAsCompleted(event) {
   let checkbox = event.target;

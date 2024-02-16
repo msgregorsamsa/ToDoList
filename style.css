@@ -55,7 +55,7 @@ Redigera även storlek på input-text */
 #todo-input:focus {
     /* Styling för input-box är den är markerad*/
     box-shadow: 2px 2px 8px rgb(136, 49, 49);
-    
+
     outline: none;
 }
 
@@ -103,29 +103,29 @@ form,
 .completed {
     text-decoration: line-through;
     color: rgb(182, 182, 182);
-  }
-  
+}
+
 
 .blue-button {
     font-size: 35px;
     padding: 5px;
     border: none;
     margin: auto;
-    border: none; 
+    border: none;
 }
 
-.remove-button{
+.remove-button {
     height: 25px;
     width: 25px;
     margin: auto;
-    border: none; 
+    border: none;
     background-color: white;
 }
 
 .editCheckbox {
     height: 20px;
     width: 20px;
-    margin:auto;
+    margin: auto;
     padding-right: 5px;
     /* margin: 5px; */
 }
