@@ -7,7 +7,11 @@ let toDoList = document.querySelector(".todo-list");
 let userInput = "";
 
 //Event listeners
+//Lägg till item i listan
 toDoForm.addEventListener("submit", addToDo);
+//Ta bort item från listan
+toDoList.addEventListener('click', deleteItem);
+
 
 //Functions
 function addToDo(event) {
@@ -46,7 +50,8 @@ function addToDo(event) {
   toDoDiv.appendChild(newToDoItem);
 
   //Skapar ta bort knappen
-  let removeButton = document.createElement("button");
+  let removeButton = document.createElement('button');
+  removeButton.type = 'button';
   removeButton.innerText = '❌';
   removeButton.classList.add("remove-button");
   toDoDiv.appendChild(removeButton);
@@ -54,4 +59,12 @@ function addToDo(event) {
   //Lägger in den nya diven i todoList som finns i html
   toDoList.appendChild(toDoDiv);
 
+  toDoInput.value = '';
+
+}
+
+function deleteItem(event){
+  let clickedItem = event.target;
+  // hämtar parent element till den klickade deleteknappen och tar bort allt där i.
+  clickedItem.parentElement.remove(); 
 }
