@@ -4,9 +4,11 @@ let toDoInput = document.querySelector(".todo-input");
 let toDoContainer = document.querySelector(".todo-container"); //Vet inte om vi faktikst behöver denna men skapar en för varje klass
 let toDoList = document.querySelector(".todo-list");
 
-let userInput = "";
+let clearCompletedButton = document.querySelector(".clear-completed");
+let filterOptions = document.querySelector(".filter-options");
+let itemsLeft = document.querySelector(".items-left");
 
-// ...
+let userInput = "";
 
 //Event listeners
 // Lägg till item i listan
@@ -16,7 +18,11 @@ toDoList.addEventListener('click', deleteItem);
 // Markera som färdigt när checkboxen klickas på 
 toDoList.addEventListener('change', markAsCompleted);
 
-// ...
+// Event listener för att markera alla som färdiga/ofärdiga
+document.querySelector(".toggle-all").addEventListener("change", toggleAll);
+
+// Event listener för att ta bort alla färdiga anteckningar
+clearCompletedButton.addEventListener("click", clearCompleted);
 
 //Functions
 function addToDo(event) {
@@ -81,4 +87,22 @@ function markAsCompleted(event) {
   let checkbox = event.target;
   let todoItem = checkbox.parentElement;
   todoItem.classList.toggle('completed');
+}
+
+// Funktion för att markera alla som färdiga/ofärdiga
+function toggleAll() {
+  let todos = document.querySelectorAll(".toDo");
+  todos.forEach(todo => {
+    let checkbox = todo.querySelector(".editCheckbox");
+    checkbox.checked = event.target.checked;
+    todo.classList.toggle('completed', event.target.checked);
+  });
+}
+
+// Funktion för att ta bort alla färdiga anteckningar
+function clearCompleted() {
+  let completedTodos = document.querySelectorAll(".completed");
+  completedTodos.forEach(todo => {
+    todo.remove();
+  });
 }
