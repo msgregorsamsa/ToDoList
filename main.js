@@ -25,6 +25,7 @@ function addToDo(event) {
   checkbox.name = 'checkbox';
   checkbox.id = 'checkbox';
   checkbox.value = 'checkbox'; // Vet ej om vi behöver ha med value
+  checkbox.classList.add("editCheckbox");
 
   let label = document.createElement('label');
   label.htmlFor = 'id';

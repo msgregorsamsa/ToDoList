@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8">
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SannaAnnas ToDo List</title>
-  </head>
+</head>
 
-  <body>
-    <header>
-      <h1>SannaAnnas ToDo</h1>
-    </header>
+<body>
+    <div class="todo-app">
+        <header>
+            <h1>SannaAnnas ToDo</h1>
+        </header>
 
-    <form class="todo-form">
-      <label for="todo-input"></label>
-      <input
-        type="text"
-        id="todo-input"
-        class="todo-input"
-        placeholder="What needs to be done?"
-      />
-    </form>
+        <main>
+            <form class="todo-form">
+                <button type = 'button' class="blue-button">🔽</button> 
+                <label for="todo-input"></label>
+                <input type="text" id="todo-input" class="todo-input" placeholder="What needs to be done?" />
+            </form>
 
-    <div class="todo-container">
-      <ul class="todo-list"></ul>
+            <div class="todo-container">
+                <ul class="todo-list"></ul>
+            </div>
+        </main>
+
     </div>
-  </body>
+</body>
+
 </html>
