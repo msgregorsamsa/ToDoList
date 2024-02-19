@@ -63,7 +63,8 @@ li.toDo-item {
     width: 100%;
     font-size: 24px;
     line-height: 1.4em;
-    padding: 6px;
+    padding: 4px;
+    font-weight: 300;
     box-sizing: border-box;
     font-style: italic;
     color: #989898;
@@ -83,10 +84,6 @@ li.toDo-item {
     outline: none;
 }
 
-.todo-input {
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 15px 150px 0 rgba(0, 0, 0, 0.1);
-}
-
 form,
 .todo-input {
     display: flex;
@@ -97,10 +94,11 @@ form,
 
 .todo-input {
     padding: 0.5rem;
-    font-size: 2rem;
+    font-size: 24px;
     background-color: white;
     border: none;
     cursor: pointer;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 15px 150px 0 rgba(0, 0, 0, 0.1);
 }
 
 .todo-container {
@@ -149,9 +147,9 @@ form,
     border-radius: 3px;
     border-width: 0px;
     outline: none;
-
 }
 
+/* Korrigera den röda färgen */
 .filters>li>button:hover {
     border-color: #CE4646;
     border-radius: 3px;
@@ -166,6 +164,7 @@ form,
 
 /* Rätta till placering och storlek */
 .blue-button {
+    display: inline-block;
     font-size: 20px;
     padding: 5px;
 }
