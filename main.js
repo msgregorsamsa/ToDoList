@@ -17,17 +17,29 @@ toDoForm.addEventListener("submit", addToDo);
 toDoList.addEventListener('click', deleteItem);
 // Markera som färdigt när checkboxen klickas på 
 toDoList.addEventListener('change', markAsCompleted);
-
-// Event listener för att markera alla som färdiga/ofärdiga
-document.querySelector(".toggle-all").addEventListener("change", toggleAll);
-
-// Event listener för att ta bort alla färdiga anteckningar
+// Markera alla tasks som färdiga/ofärdiga när den blåa knappen klickas
+document.querySelector(".blue-button").addEventListener("click", toggleAll);
+// Ta bort alla färdiga anteckningar
 clearCompletedButton.addEventListener("click", clearCompleted);
+//Filtrera val i choice-bar
+filterOptions.addEventListener("click", function (event) {
+  if (event.target.tagName === "BUTTON") {
+    let filter = event.target.textContent;
+    filterTodos(filter);
+  }
+});
+
 
 //Functions
+// Funktion för att uppdatera hur många ofärdiga tasks som återstår
+function updateItemsLeft() {
+  let unfinishedTodos = document.querySelectorAll(".toDo:not(.completed)");
+  itemsLeft.textContent = unfinishedTodos.length + " items left";
+}
+
 function addToDo(event) {
   event.preventDefault();
-  
+
   userInput = toDoInput.value;
 
   // Skapar nya element från användarens input
@@ -71,6 +83,9 @@ function addToDo(event) {
   toDoList.appendChild(toDoDiv);
 
   toDoInput.value = '';
+
+  // Anropar updateItemsLeft efter att en ny anteckning har lagts till
+  updateItemsLeft();
 }
 
 function deleteItem(event) {
@@ -80,13 +95,18 @@ function deleteItem(event) {
   if (clickedItem.classList.contains('remove-button')) {
     // hämtar parent element till den klickade deleteknappen och tar bort allt där i.
     clickedItem.parentElement.remove();
+    // Anropar updateItemsLeft efter att en anteckning har tagits bort
+    updateItemsLeft();
   }
 }
 
+// Togglar task som genomförd/icke genomförd
 function markAsCompleted(event) {
   let checkbox = event.target;
   let todoItem = checkbox.parentElement;
   todoItem.classList.toggle('completed');
+  // Anropar updateItemsLeft efter att en anteckning har markerats som färdig eller ofärdig
+  updateItemsLeft();
 }
 
 // Funktion för att markera alla som färdiga/ofärdiga
@@ -97,6 +117,9 @@ function toggleAll() {
     checkbox.checked = event.target.checked;
     todo.classList.toggle('completed', event.target.checked);
   });
+
+  // Anropar updateItemsLeft efter att alla anteckningar har markerats som färdiga eller ofärdiga
+  updateItemsLeft();
 }
 
 // Funktion för att ta bort alla färdiga anteckningar
@@ -104,5 +127,37 @@ function clearCompleted() {
   let completedTodos = document.querySelectorAll(".completed");
   completedTodos.forEach(todo => {
     todo.remove();
+  });
+
+  // Anropa updateItemsLeft efter att alla färdiga anteckningar har tagits bort
+  updateItemsLeft();
+}
+
+// Funktion för att filtrera 
+function filterTodos(filter) {
+  // Hämta alla todos (alla div-element med klassen "toDo")
+  let todos = document.querySelectorAll(".toDo");
+
+  // Loopa igenom varje todo
+  todos.forEach(todo => {
+    // Switchcase för alla filteralternativ
+    switch (filter) {
+      // Om filter är "All", visa alla todos genom att ändra display-stilen till "flex"
+      case "All":
+        todo.style.display = "flex";
+        break;
+      
+      // Om filter är "Active", visa bara ofärdiga todos genom att kontrollera klassen "completed"
+      // och ändra display-stilen baserat på om den har klassen "completed"
+      case "Active":
+        todo.classList.contains("completed") ? todo.style.display = "none" : todo.style.display = "flex";
+        break;
+      
+      // Om filter är "Completed", visa bara färdiga todos genom att kontrollera klassen "completed"
+      // och ändra display-stilen baserat på om den har klassen "completed"
+      case "Completed":
+        todo.classList.contains("completed") ? todo.style.display = "flex" : todo.style.display = "none";
+        break;
+    }
   });
 }

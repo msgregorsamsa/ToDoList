@@ -30,14 +30,12 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 4vh;
     color: rgb(182, 67, 67);
     font-size: 55px;
     font-weight: 200;
 }
 
-#todo-input::placeholder {
-    /* Styling för placeholder-texten i input-fältet */
+#todo-input::placeholder { /* Styling för placeholder-texten i input-fältet */
     margin: 0;
     width: 100%;
     font-size: 24px;
@@ -49,11 +47,9 @@ h1 {
 }
 
 #todo-input,
-.todo-list {
-    /* Styling för input-box */
+.todo-list { /* Styling för input-box */
     align-items: start;
-    padding: 16px 60px 16px 30px
-        /* Padding värden: 1. Topp, 2. Höger, 3. Botten, 4. Vänster*/
+    padding: 16px 60px 16px 30px /* Padding värden: 1. Topp, 2. Höger, 3. Botten, 4. Vänster*/
 }
 
 #todo-input:focus {
