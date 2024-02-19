@@ -113,6 +113,7 @@ function addToDo(event) {
 
   // Anropar updateItemsLeft efter att en ny anteckning har lagts till
   updateItemsLeft();
+  updateBlueButton();
 }
 
 function deleteItem(event) {
@@ -120,10 +121,11 @@ function deleteItem(event) {
 
   // Kontrollera om klicket var på kryssknappen
   if (clickedItem.classList.contains('remove-button')) {
-    // hämtar parent element till den klickade deleteknappen och tar bort allt där i.
-    clickedItem.parentElement.remove();
-    // Anropar updateItemsLeft efter att en anteckning har tagits bort
-    updateItemsLeft();
+      // hämtar parent element till den klickade deleteknappen och tar bort allt där i.
+      clickedItem.parentElement.remove();
+      // Anropar updateItemsLeft efter att en anteckning har tagits bort
+      updateItemsLeft();
+      // Uppdatera synligheten och funktionaliteten för blue-button efter att en anteckning har tagits bort
   }
 }
 
@@ -134,7 +136,9 @@ function markAsCompleted(event) {
   todoItem.classList.toggle('completed');
   // Anropar updateItemsLeft efter att en anteckning har markerats som färdig eller ofärdig
   updateItemsLeft();
+  // Uppdatera synligheten och funktionaliteten för blue-button efter att en anteckning har markerats som färdig eller ofärdig
 }
+
 
 // Funktion för att markera alla som färdiga/ofärdiga
 function toggleAll() {
