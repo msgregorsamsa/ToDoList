@@ -6,6 +6,7 @@ let toDoList = document.querySelector(".todo-list");
 let clearCompletedButton = document.querySelector(".clear-completed");
 let filterOptions = document.querySelector(".filter-options");
 let itemsLeft = document.querySelector(".items-left");
+let content = document.querySelector(".content");
 let blueButton;
 let userInput = "";
 
@@ -73,6 +74,8 @@ function addToDo(event) {
   let toDoDiv = document.createElement("div");
   toDoDiv.classList.add("toDo");
 
+  
+
   // Skapar checkbox och dess label
   let checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
@@ -114,6 +117,9 @@ function addToDo(event) {
   // Anropar updateItemsLeft efter att en ny anteckning har lagts till
   updateItemsLeft();
   updateBlueButton();
+
+    // Visa innehållet när en ny uppgift har lagts till
+    content.style.display = "block";
 }
 
 function deleteItem(event) {
