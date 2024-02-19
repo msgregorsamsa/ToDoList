@@ -3,11 +3,10 @@ let toDoForm = document.querySelector(".todo-form");
 let toDoInput = document.querySelector(".todo-input");
 let toDoContainer = document.querySelector(".todo-container"); //Vet inte om vi faktikst behöver denna men skapar en för varje klass
 let toDoList = document.querySelector(".todo-list");
-
 let clearCompletedButton = document.querySelector(".clear-completed");
 let filterOptions = document.querySelector(".filter-options");
 let itemsLeft = document.querySelector(".items-left");
-
+let blueButton;
 let userInput = "";
 
 //Event listeners
@@ -17,8 +16,6 @@ toDoForm.addEventListener("submit", addToDo);
 toDoList.addEventListener('click', deleteItem);
 // Markera som färdigt när checkboxen klickas på 
 toDoList.addEventListener('change', markAsCompleted);
-// Markera alla tasks som färdiga/ofärdiga när den blåa knappen klickas
-document.querySelector(".blue-button").addEventListener("click", toggleAll);
 // Ta bort alla färdiga anteckningar
 clearCompletedButton.addEventListener("click", clearCompleted);
 //Filtrera val i choice-bar
@@ -29,12 +26,42 @@ filterOptions.addEventListener("click", function (event) {
   }
 });
 
+// Blue-button läggs till när en task har blivit tillagd i listan
+document.addEventListener("DOMContentLoaded", function () {
+  // Skapa blue-button dynamiskt
+  blueButton = document.createElement("button");
+  blueButton.type = 'button';
+  blueButton.classList.add("blue-button");
+  blueButton.innerText = '🔽';
+
+  // Lägg till blue-button i body-elementet
+  document.body.appendChild(blueButton);
+
+  // Uppdatera synligheten och funktionaliteten för blue-button
+  updateBlueButton();
+});
 
 //Functions
 // Funktion för att uppdatera hur många ofärdiga tasks som återstår
 function updateItemsLeft() {
   let unfinishedTodos = document.querySelectorAll(".toDo:not(.completed)");
   itemsLeft.textContent = unfinishedTodos.length + " items left";
+}
+
+// Funktion för att uppdatera synligheten av blue-button och dess funktionalitet
+function updateBlueButton() {
+  // Hämta alla todos (alla div-element med klassen "toDo")
+  let todos = document.querySelectorAll(".toDo");
+
+  // Visa eller dölj blue-button baserat på antalet todos
+  blueButton.style.display = todos.length > 0 ? "block" : "none";
+
+  // Lägg till eller ta bort event listener beroende på om det finns todos eller inte
+  if (todos.length > 0) {
+    blueButton.addEventListener("click", toggleAll);
+  } else {
+    blueButton.removeEventListener("click", toggleAll);
+  }
 }
 
 function addToDo(event) {
@@ -114,13 +141,14 @@ function toggleAll() {
   let todos = document.querySelectorAll(".toDo");
   todos.forEach(todo => {
     let checkbox = todo.querySelector(".editCheckbox");
-    checkbox.checked = event.target.checked;
-    todo.classList.toggle('completed', event.target.checked);
+    checkbox.checked = blueButton.checked;
+    todo.classList.toggle('completed', blueButton.checked);
   });
 
   // Anropar updateItemsLeft efter att alla anteckningar har markerats som färdiga eller ofärdiga
   updateItemsLeft();
 }
+
 
 // Funktion för att ta bort alla färdiga anteckningar
 function clearCompleted() {
