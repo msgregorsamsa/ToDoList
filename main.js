@@ -7,6 +7,7 @@ let clearCompletedButton = document.querySelector(".clear-completed");
 let filterOptions = document.querySelector(".filter-options");
 let itemsLeft = document.querySelector(".items-left");
 let content = document.querySelector(".content");
+
 let blueButton;
 let userInput = "";
 
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
   blueButton.innerText = '🔽';
 
   // Lägg till blue-button i body-elementet
-  document.body.appendChild(blueButton);
+  toDoForm.prepend(blueButton);
 
   // Uppdatera synligheten och funktionaliteten för blue-button
   updateBlueButton();
