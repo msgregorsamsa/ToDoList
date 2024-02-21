@@ -86,7 +86,7 @@ function addToDo(event) {
   checkbox.classList.add("editCheckbox");
 
   let label = document.createElement('label');
-  label.htmlFor = 'id';
+  label.htmlFor = userInput;
 
   label.appendChild(document.createTextNode('')); // För visibility
 
@@ -96,7 +96,6 @@ function addToDo(event) {
 
   // Skapar själva listan
   let newToDoItem = document.createElement("li");
-  // newToDoItem.innerText = 'hello world!'; // detta dyker nu upp i debuggern åtminstone.
   newToDoItem.innerText = userInput;
   newToDoItem.classList.add("toDo-item");
 
