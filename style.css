@@ -137,12 +137,12 @@ form,
     list-style-type: none;
 }
 
+.filters>li>p,
 .filters>li>button {
     margin: 7px;
     font-family: inherit;
     background-color: white;
-    font-size: 17px;
-    border-color: none;
+    font-size: 15px;
     border-radius: 3px;
     border-width: 0px;
     outline: none;

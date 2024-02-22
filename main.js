@@ -28,6 +28,15 @@ filterOptions.addEventListener("click", function (event) {
   }
 });
 
+//Uppdatera items left
+document.addEventListener('click', function (e){
+  let checkboxes = e.target;
+  if(checkboxes.tagName =='INPUT' && checkboxes.type == 'checkbox'){
+    updateItemsLeft();
+  }
+  
+});
+
 // Blue-button läggs till när en task har blivit tillagd i listan
 document.addEventListener("DOMContentLoaded", function () {
   // Skapa blue-button dynamiskt
@@ -44,10 +53,17 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //Functions
-// Funktion för att uppdatera hur många ofärdiga tasks som återstår
-function updateItemsLeft() {
-  let unfinishedTodos = document.querySelectorAll(".toDo:not(.completed)");
-  itemsLeft.textContent = unfinishedTodos.length + " items left";
+
+function updateItemsLeft(){ 
+  let countChecked = document.querySelectorAll("input[type=checkbox]:not(:checked)").length;
+
+  if (countChecked === 1) {
+    itemsLeft.textContent = "1 item left";
+} else {
+    itemsLeft.textContent = countChecked + " items left";
+}
+  itemsLeft.hidden = (countChecked === 0);
+
 }
 
 // Funktion för att uppdatera synligheten av blue-button och dess funktionalitet
