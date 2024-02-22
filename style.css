@@ -29,10 +29,8 @@ h1 {
     margin-bottom: 35px;
 }
 
+/* Hela content-rutan */
 .content {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
     min-width: 230px;
     max-width: 550px;
     background-color: white;
@@ -43,12 +41,10 @@ h1 {
 /* Boxen alla tasks hamnar i  */
 ul.todo-list {
     display: flex;
-    flex-grow: 1;
+    flex: 1;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
 }
-
-
 
 /* Listobjektet som skapas */
 li.toDo-item {
@@ -103,8 +99,7 @@ form,
 
 .todo-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* Blir en skum skugga om det inte är flex, vet ej varför */
 }
 
 .todo-list {
@@ -157,7 +152,7 @@ form,
 
 .remove-button {
     font-size: 20px;
-    margin: auto;
+    margin-left: auto;
     border: none;
     background-color: white;
 }

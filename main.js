@@ -1,7 +1,6 @@
 //Selectors from html
 let toDoForm = document.querySelector(".todo-form");
 let toDoInput = document.querySelector(".todo-input");
-let toDoContainer = document.querySelector(".todo-container"); //Vet inte om vi faktikst behöver denna men skapar en för varje klass
 let toDoList = document.querySelector(".todo-list");
 let clearCompletedButton = document.querySelector(".clear-completed");
 let filterOptions = document.querySelector(".filter-options");
@@ -90,8 +89,6 @@ function addToDo(event) {
   // Skapar nya element från användarens input
   let toDoDiv = document.createElement("div");
   toDoDiv.classList.add("toDo");
-
-  
 
   // Skapar checkbox och dess label
   let checkbox = document.createElement('input');
