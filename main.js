@@ -74,7 +74,6 @@ function deleteItem(event) {
       
       updateItemsLeft();
       updateBlueButton();
-
   }
 }
 
@@ -85,6 +84,10 @@ function markAsCompleted(event) {
   let checkbox = event.target;
   let todoItem = checkbox.parentElement;
   todoItem.classList.toggle('completed');
+
+    // Kontrollera om det finns avklarade uppgifter för att visa eller gömma "Clear completed" knappen
+    let completedTodos = document.querySelectorAll(".completed");
+    clearCompletedButton.style.display = completedTodos.length > 0 ? "block" : "none";
 
   // Kontrollera om det finns aktiva uppgifter för att visa eller gömma ul.todo-list
   updateTodoListVisibility();
