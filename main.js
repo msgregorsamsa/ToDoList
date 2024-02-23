@@ -87,8 +87,13 @@ function markAsCompleted(event) {
   let todoItem = checkbox.parentElement;
   todoItem.classList.toggle('completed');
 
+  // Kontrollera om det finns avklarade uppgifter för att visa eller gömma "Clear completed" knappen
+  let completedTodos = document.querySelectorAll(".completed");
+  clearCompletedButton.style.display = completedTodos.length > 0 ? "block" : "none";
+
   updateItemsLeft();
 }
+
 
 
 // Ta bort alla färdiga anteckningar

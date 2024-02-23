@@ -88,7 +88,7 @@ li.toDo-item {
 #todo-input,
 .todo-list {
     align-items: start;
-    padding: 16px 60px 16px 40px; /* Top, Right, Bottom, Left */
+    padding: 16px 60px 16px 50px; /* Top, Right, Bottom, Left */
 }
 
 /* Input Focus Styling */
@@ -194,6 +194,10 @@ form,
     margin-left: auto;
     border: none;
     background-color: white;
+}
+
+.clear-completed {
+    display: none;
 }
 
 /* Blue Button Styling */
