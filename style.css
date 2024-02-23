@@ -21,12 +21,20 @@ body {
 
 h1 {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     color: rgb(182, 67, 67);
     font-size: 60px;
     font-weight: 200;
     margin-bottom: 35px;
+}
+
+/* Påbörjan för att sidan ska bli responsiv, denna del påverkar inte h1 eller footer */
+main{
+    display: flex;
+    flex-direction:column;
+    flex-wrap: wrap;
 }
 
 /* Hela content-rutan */
