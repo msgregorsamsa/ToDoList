@@ -80,6 +80,25 @@ li.toDo-item {
     outline: none;
 }
 
+.todo-form{
+    width: 550px;
+    max-width: 100%;
+    position: relative;
+}
+
+.todo-form input{
+    width: 100%;
+}
+
+.todo-form button{
+    background-color: white;
+    height: 100%;
+    position: absolute;
+    left: 0;
+}
+
+
+
 form,
 .todo-input {
     display: flex;
@@ -159,9 +178,7 @@ form,
 
 /* Rätta till placering och storlek */
 .blue-button {
-    display: inline-block;
     border: none;
-    background-color: f5f5f5;
     font-size: 20px;
     padding: 5px;
 }
