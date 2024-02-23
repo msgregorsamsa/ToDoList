@@ -1,37 +1,40 @@
+/* Reset CSS */
 * {
     margin: 0;
     box-sizing: border-box;
 }
 
+/* Body Styling */
 body {
     min-width: 550px;
     max-width: 550px;
     font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
     line-height: 1.4em;
     background: #f5f5f5;
-    color: #111111;
     margin: 0 auto;
     font-weight: 300;
 }
 
-/* Innehåll */
+/* Content Styling */
 .content {
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
     display: none;
 }
 
+/* Todo App Styling */
 .todo-app {
     align-content: center;
     margin: 80px 0 10px 0;
 }
 
-/* Påbörjan för att sidan ska bli responsiv, denna del påverkar inte h1 eller footer */
-main{
+/* Responsive Layout Styling */
+main {
     display: flex;
-    flex-direction:column;
+    flex-direction: column;
     flex-wrap: wrap;
 }
 
+/* Header Styling */
 h1 {
     display: flex;
     flex-wrap: wrap;
@@ -43,7 +46,7 @@ h1 {
     margin-bottom: 35px;
 }
 
-/* Boxen alla tasks hamnar i  */
+/* Todo List Styling */
 ul.todo-list {
     display: flex;
     flex: 1;
@@ -51,15 +54,15 @@ ul.todo-list {
     justify-content: space-between;
 }
 
-/* Listobjektet som skapas */
+/* Todo Item Styling */
 li.toDo-item {
     font-size: 20px;
     color: #272727;
     background-color: white;
 }
 
+/* Input Placeholder Styling */
 #todo-input::placeholder {
-    /* Styling för placeholder-texten i input-fältet */
     margin: 0;
     width: 100%;
     font-size: 24px;
@@ -71,47 +74,7 @@ li.toDo-item {
     color: #989898;
 }
 
-#todo-input,
-.todo-list {
-    /* Styling för input-box */
-    align-items: start;
-    padding: 16px 60px 16px 40px;
-        /* Padding värden: 1. Topp, 2. Höger, 3. Botten, 4. Vänster*/
-}
-
-#todo-input:focus {
-    /* Styling för input-box är den är markerad*/
-    box-shadow: 2px 2px 8px rgb(136, 49, 49);
-    outline: none;
-}
-
-.todo-form{
-    width: 550px;
-    max-width: 100%;
-    position: relative;
-}
-
-.todo-form input{
-    width: 100%;
-}
-
-.todo-form button{
-    background-color: white;
-    height: 100%;
-    position: absolute;
-    left: 0;
-}
-
-
-
-form,
-.todo-input {
-    display: flex;
-    flex-grow: 1;
-    justify-content: center;
-    align-items: center;
-}
-
+/* Input-bar Styling */
 .todo-input {
     padding: 0.5rem;
     font-size: 24px;
@@ -121,15 +84,58 @@ form,
     box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 15px 150px 0 rgba(0, 0, 0, 0.1);
 }
 
-.todo-container {
-    display: flex;
-    /* Blir en skum skugga om det inte är flex, vet ej varför */
+/* Input and Todo List Common Styling */
+#todo-input,
+.todo-list {
+    align-items: start;
+    padding: 16px 60px 16px 40px; /* Top, Right, Bottom, Left */
 }
 
+/* Input Focus Styling */
+#todo-input:focus {
+    box-shadow: 2px 2px 8px rgb(136, 49, 49);
+    outline: none;
+}
+
+/* Todo Form Styling */
+.todo-form {
+    width: 550px;
+    max-width: 100%;
+    position: relative;
+}
+
+/* Todo Form Elements Styling */
+.todo-form input {
+    width: 100%;
+}
+
+.todo-form button {
+    background-color: white;
+    height: 100%;
+    position: absolute;
+    left: 0;
+}
+
+/* Form and Input Common Styling */
+form,
+.todo-input {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Todo Container Styling */
+.todo-container {
+    display: flex;
+}
+
+/* Todo List Styling */
 .todo-list {
     background-color: white;
 }
 
+/* Todo Styling */
 .toDo {
     display: flex;
     list-style-type: none;
@@ -138,42 +144,51 @@ form,
     background-color: white;
 }
 
+/* Todo Item Styling */
 .toDo-item {
     font-size: 25px;
     padding: 10px;
     color: #272727;
 }
 
+/* Completed Todo Styling */
 .completed {
     text-decoration: line-through;
     color: rgb(182, 182, 182);
 }
 
+/* Choices Bar and Filters Styling */
 .choices-bar,
 .filters {
     display: flex;
     justify-content: center;
     list-style-type: none;
+    background-color: white;
 }
 
+/* Filter Styling */
 .filters>li>p,
 .filters>li>button {
-    margin: 7px;
+    margin: 10px;
+    padding: 5px;
     font-family: inherit;
     background-color: white;
+    box-shadow: none;
+    border-color: transparent;
     font-size: 15px;
     border-radius: 3px;
-    border-width: 0px;
+    border-width: 1px;
     outline: none;
 }
 
-/* Korrigera den röda färgen */
+/* Hover Effect for Filter Button */
 .filters>li>button:hover {
-    border-color: #CE4646;
     border-radius: 3px;
-    border-width: 1px;
+    border: 1px solid rgba(231, 0, 0, 0.658);
+    border-radius: 3px;
 }
 
+/* Remove Button Styling */
 .remove-button {
     font-size: 20px;
     margin-left: auto;
@@ -181,16 +196,33 @@ form,
     background-color: white;
 }
 
-/* Rätta till placering och storlek */
+/* Blue Button Styling */
 .blue-button {
     border: none;
-    font-size: 20px;
+    font-size: 25px;
     padding: 5px;
 }
 
+/* Edit Checkbox Styling */
 .editCheckbox {
     height: 20px;
     width: 20px;
     margin: auto;
     padding-right: 5px;
+}
+
+/* Media Query for Responsive Styles */
+@media (min-width: 565px) {
+    body {
+        min-width: 550px;
+        max-width: 550px;
+    }
+
+    .todo-form {
+        width: 550px;
+    }
+
+    .todo-form input {
+        width: calc(100% - 60px);
+    }
 }
