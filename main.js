@@ -7,18 +7,125 @@ let filterOptions = document.querySelector(".filter-options");
 let itemsLeft = document.querySelector(".items-left");
 let content = document.querySelector(".content");
 
+
+//Variabler
 let blueButton;
 let userInput = "";
 
-//Event listeners
-// Lägg till item i listan
+
+//Lägg till todo:
 toDoForm.addEventListener("submit", addToDo);
-// Ta bort item från listan
+
+function addToDo(event) {
+  event.preventDefault();
+
+  userInput = toDoInput.value;
+
+  let toDoDiv = document.createElement("div");
+  toDoDiv.classList.add("toDo");
+
+  let checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  checkbox.name = 'checkbox';
+  checkbox.id = userInput; //For + id borde vara samma tänker jag. Funkar inte som jag tänker mig dock.
+  checkbox.value = 'checkbox';
+  checkbox.classList.add("editCheckbox");
+
+  let label = document.createElement('label');
+  label.htmlFor = userInput;
+
+  label.appendChild(document.createTextNode('')); 
+
+  toDoDiv.appendChild(checkbox);
+  toDoDiv.appendChild(label);
+
+  let newToDoItem = document.createElement("li");
+  newToDoItem.innerText = userInput;
+  newToDoItem.classList.add("toDo-item");
+
+  toDoDiv.appendChild(newToDoItem);
+
+  let removeButton = document.createElement('button');
+  removeButton.type = 'button';
+  removeButton.innerText = '❌';
+  removeButton.classList.add("remove-button");
+  toDoDiv.appendChild(removeButton);
+
+  toDoList.appendChild(toDoDiv);
+
+  toDoInput.value = '';
+
+  updateItemsLeft();
+  updateBlueButton();
+
+    // Visa innehållet när en ny uppgift har lagts till
+    content.style.display = "block"; // Är inte detta styling och bör ligga i css? 
+}
+
+
+//Ta bort todo
 toDoList.addEventListener('click', deleteItem);
-// Markera som färdigt när checkboxen klickas på 
+
+function deleteItem(event) {
+  let clickedItem = event.target;
+
+  if (clickedItem.classList.contains('remove-button')) {
+      clickedItem.parentElement.remove();
+      
+      updateItemsLeft();
+      updateBlueButton();
+
+  }
+}
+
+
+//Markera som färdigt
 toDoList.addEventListener('change', markAsCompleted);
+
+function markAsCompleted(event) {
+  let checkbox = event.target;
+  let todoItem = checkbox.parentElement;
+  todoItem.classList.toggle('completed');
+
+  updateItemsLeft();
+}
+
+
 // Ta bort alla färdiga anteckningar
 clearCompletedButton.addEventListener("click", clearCompleted);
+
+function clearCompleted() {
+  let completedTodos = document.querySelectorAll(".completed");
+  completedTodos.forEach(todo => {
+    todo.remove();
+  });
+
+  updateItemsLeft();
+  updateBlueButton();
+}
+
+
+//Uppdatera items left
+document.addEventListener('click', function (e){
+  let checkboxes = e.target;
+  if(checkboxes.tagName =='INPUT' && checkboxes.type == 'checkbox'){
+    updateItemsLeft();
+  }
+});
+
+function updateItemsLeft(){ 
+  let countChecked = document.querySelectorAll("input[type=checkbox]:not(:checked)").length;
+  
+  if (countChecked === 1) {
+    itemsLeft.textContent = "1 item left";
+  } else {
+    itemsLeft.textContent = countChecked + " items left";
+  }
+  itemsLeft.hidden = (countChecked === 0);
+  
+}
+
+
 //Filtrera val i choice-bar
 filterOptions.addEventListener("click", function (event) {
   if (event.target.tagName === "BUTTON") {
@@ -27,50 +134,44 @@ filterOptions.addEventListener("click", function (event) {
   }
 });
 
-//Uppdatera items left
-document.addEventListener('click', function (e){
-  let checkboxes = e.target;
-  if(checkboxes.tagName =='INPUT' && checkboxes.type == 'checkbox'){
-    updateItemsLeft();
-  }
-  
-});
+function filterTodos(filter) {
+  let todos = document.querySelectorAll(".toDo"); // Skulle kunna flyttas till toppen med övriga querySelectorer
 
-// Blue-button läggs till när en task har blivit tillagd i listan
+  todos.forEach(todo => {
+    switch (filter) {
+      
+      case "All":
+        todo.style.display = "flex";
+        break;
+      
+      case "Active":
+        todo.classList.contains("completed") ? todo.style.display = "none" : todo.style.display = "flex";
+        break;
+      
+      case "Completed":
+        todo.classList.contains("completed") ? todo.style.display = "flex" : todo.style.display = "none";
+        break;
+    }
+  });
+}
+
+
+// Blue button
 document.addEventListener("DOMContentLoaded", function () {
-  // Skapa blue-button dynamiskt
+
   blueButton = document.createElement("button");
   blueButton.type = 'button';
   blueButton.classList.add("blue-button");
   blueButton.innerText = '🔽';
 
-  // Lägg till blue-button i body-elementet
   toDoForm.prepend(blueButton);
 
-  // Uppdatera synligheten och funktionaliteten för blue-button
   updateBlueButton();
 });
 
-//Functions
-
-function updateItemsLeft(){ 
-  let countChecked = document.querySelectorAll("input[type=checkbox]:not(:checked)").length;
-
-  if (countChecked === 1) {
-    itemsLeft.textContent = "1 item left";
-} else {
-    itemsLeft.textContent = countChecked + " items left";
-}
-  itemsLeft.hidden = (countChecked === 0);
-
-}
-
-// Funktion för att uppdatera synligheten av blue-button och dess funktionalitet
 function updateBlueButton() {
-  // Hämta alla todos (alla div-element med klassen "toDo")
-  let todos = document.querySelectorAll(".toDo");
+  let todos = document.querySelectorAll(".toDo"); // Skulle kunna flyttas till toppen med övriga querySelectorer
 
-  // Visa eller dölj blue-button baserat på antalet todos
   blueButton.style.display = todos.length > 0 ? "block" : "none";
 
   // Lägg till eller ta bort event listener beroende på om det finns todos eller inte
@@ -81,134 +182,16 @@ function updateBlueButton() {
   }
 }
 
-function addToDo(event) {
-  event.preventDefault();
-
-  userInput = toDoInput.value;
-
-  // Skapar nya element från användarens input
-  let toDoDiv = document.createElement("div");
-  toDoDiv.classList.add("toDo");
-
-  // Skapar checkbox och dess label
-  let checkbox = document.createElement('input');
-  checkbox.type = 'checkbox';
-  checkbox.name = 'checkbox';
-  checkbox.id = 'checkbox';
-  checkbox.value = 'checkbox'; // Vet ej om vi behöver ha med value
-  checkbox.classList.add("editCheckbox");
-
-  let label = document.createElement('label');
-  label.htmlFor = userInput;
-
-  label.appendChild(document.createTextNode('')); // För visibility
-
-  // Appending till vår nya div
-  toDoDiv.appendChild(checkbox);
-  toDoDiv.appendChild(label);
-
-  // Skapar själva listan
-  let newToDoItem = document.createElement("li");
-  newToDoItem.innerText = userInput;
-  newToDoItem.classList.add("toDo-item");
-
-  // Kopplar samman div och li
-  toDoDiv.appendChild(newToDoItem);
-
-  // Skapar ta bort knappen
-  let removeButton = document.createElement('button');
-  removeButton.type = 'button';
-  removeButton.innerText = '❌';
-  removeButton.classList.add("remove-button");
-  toDoDiv.appendChild(removeButton);
-
-  // Lägger in den nya diven i todoList som finns i html
-  toDoList.appendChild(toDoDiv);
-
-  toDoInput.value = '';
-
-  // Anropar updateItemsLeft efter att en ny anteckning har lagts till
-  updateItemsLeft();
-  updateBlueButton();
-
-    // Visa innehållet när en ny uppgift har lagts till
-    content.style.display = "block";
-}
-
-function deleteItem(event) {
-  let clickedItem = event.target;
-
-  // Kontrollera om klicket var på kryssknappen
-  if (clickedItem.classList.contains('remove-button')) {
-      // hämtar parent element till den klickade deleteknappen och tar bort allt där i.
-      clickedItem.parentElement.remove();
-      // Anropar updateItemsLeft efter att en anteckning har tagits bort
-      updateItemsLeft();
-      // Uppdatera synligheten och funktionaliteten för blue-button efter att en anteckning har tagits bort
-  }
-}
-
-// Togglar task som genomförd/icke genomförd
-function markAsCompleted(event) {
-  let checkbox = event.target;
-  let todoItem = checkbox.parentElement;
-  todoItem.classList.toggle('completed');
-  // Anropar updateItemsLeft efter att en anteckning har markerats som färdig eller ofärdig
-  updateItemsLeft();
-  // Uppdatera synligheten och funktionaliteten för blue-button efter att en anteckning har markerats som färdig eller ofärdig
-}
-
 
 // Funktion för att markera alla som färdiga/ofärdiga
 function toggleAll() {
-  let todos = document.querySelectorAll(".toDo");
+  let todos = document.querySelectorAll(".toDo"); // Skulle kunna flyttas till toppen med övriga querySelectorer
   todos.forEach(todo => {
     let checkbox = todo.querySelector(".editCheckbox");
     checkbox.checked = blueButton.checked;
     todo.classList.toggle('completed', blueButton.checked);
   });
 
-  // Anropar updateItemsLeft efter att alla anteckningar har markerats som färdiga eller ofärdiga
   updateItemsLeft();
 }
 
-
-// Funktion för att ta bort alla färdiga anteckningar
-function clearCompleted() {
-  let completedTodos = document.querySelectorAll(".completed");
-  completedTodos.forEach(todo => {
-    todo.remove();
-  });
-
-  // Anropa updateItemsLeft efter att alla färdiga anteckningar har tagits bort
-  updateItemsLeft();
-}
-
-// Funktion för att filtrera 
-function filterTodos(filter) {
-  // Hämta alla todos (alla div-element med klassen "toDo")
-  let todos = document.querySelectorAll(".toDo");
-
-  // Loopa igenom varje todo
-  todos.forEach(todo => {
-    // Switchcase för alla filteralternativ
-    switch (filter) {
-      // Om filter är "All", visa alla todos genom att ändra display-stilen till "flex"
-      case "All":
-        todo.style.display = "flex";
-        break;
-      
-      // Om filter är "Active", visa bara ofärdiga todos genom att kontrollera klassen "completed"
-      // och ändra display-stilen baserat på om den har klassen "completed"
-      case "Active":
-        todo.classList.contains("completed") ? todo.style.display = "none" : todo.style.display = "flex";
-        break;
-      
-      // Om filter är "Completed", visa bara färdiga todos genom att kontrollera klassen "completed"
-      // och ändra display-stilen baserat på om den har klassen "completed"
-      case "Completed":
-        todo.classList.contains("completed") ? todo.style.display = "flex" : todo.style.display = "none";
-        break;
-    }
-  });
-}
