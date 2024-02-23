@@ -78,7 +78,6 @@ function deleteItem(event) {
   }
 }
 
-
 //Markera som färdigt
 toDoList.addEventListener('change', markAsCompleted);
 
@@ -87,13 +86,10 @@ function markAsCompleted(event) {
   let todoItem = checkbox.parentElement;
   todoItem.classList.toggle('completed');
 
-  // Kontrollera om det finns avklarade uppgifter för att visa eller gömma "Clear completed" knappen
-  let completedTodos = document.querySelectorAll(".completed");
-  clearCompletedButton.style.display = completedTodos.length > 0 ? "block" : "none";
-
+  // Kontrollera om det finns aktiva uppgifter för att visa eller gömma ul.todo-list
+  updateTodoListVisibility();
   updateItemsLeft();
 }
-
 
 
 // Ta bort alla färdiga anteckningar
@@ -161,6 +157,12 @@ function filterTodos(filter) {
 }
 
 
+// Uppdatera ul.todo-list synlighet
+function updateTodoListVisibility() {
+  let activeTodos = document.querySelectorAll(".toDo:not(.completed)");
+  toDoList.style.display = activeTodos.length > 0 ? "block" : "none";
+}
+
 // Blue button
 document.addEventListener("DOMContentLoaded", function () {
 
@@ -185,18 +187,22 @@ function updateBlueButton() {
   } else {
     blueButton.removeEventListener("click", toggleAll);
   }
+
+  updateTodoListVisibility();
 }
 
 
 // Funktion för att markera alla som färdiga/ofärdiga
 function toggleAll() {
-  let todos = document.querySelectorAll(".toDo"); // Skulle kunna flyttas till toppen med övriga querySelectorer
+  let todos = document.querySelectorAll(".toDo");
   todos.forEach(todo => {
     let checkbox = todo.querySelector(".editCheckbox");
     checkbox.checked = blueButton.checked;
     todo.classList.toggle('completed', blueButton.checked);
   });
 
+  // Uppdatera ul.todo-list synlighet
+  updateTodoListVisibility();
   updateItemsLeft();
 }
 
