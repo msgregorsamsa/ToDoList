@@ -34,7 +34,7 @@ function addToDo(event) {
   let label = document.createElement('label');
   label.htmlFor = userInput;
 
-  label.appendChild(document.createTextNode('')); 
+  label.appendChild(document.createTextNode(''));
 
   toDoDiv.appendChild(checkbox);
   toDoDiv.appendChild(label);
@@ -58,8 +58,8 @@ function addToDo(event) {
   updateItemsLeft();
   updateBlueButton();
 
-    // Visa innehållet när en ny uppgift har lagts till
-    content.style.display = "block"; // Är inte detta styling och bör ligga i css? 
+  // Visa innehållet när en ny uppgift har lagts till
+  content.style.display = "block"; // Är inte detta styling och bör ligga i css? 
 }
 
 
@@ -70,10 +70,10 @@ function deleteItem(event) {
   let clickedItem = event.target;
 
   if (clickedItem.classList.contains('remove-button')) {
-      clickedItem.parentElement.remove();
-      
-      updateItemsLeft();
-      updateBlueButton();
+    clickedItem.parentElement.remove();
+
+    updateItemsLeft();
+    updateBlueButton();
   }
 }
 
@@ -85,15 +85,15 @@ function markAsCompleted(event) {
   let todoItem = checkbox.parentElement;
   todoItem.classList.toggle('completed');
 
-    // Kontrollera om det finns avklarade uppgifter för att visa eller gömma "Clear completed" knappen
-    let completedTodos = document.querySelectorAll(".completed");
-    clearCompletedButton.style.display = completedTodos.length > 0 ? "block" : "none";
+  // Kontrollera om det finns avklarade uppgifter för att visa eller gömma "Clear completed" knappen
+  let completedTodos = document.querySelectorAll(".completed");
+  clearCompletedButton.style.display = completedTodos.length > 0 ? "block" : "none";
 
-  // Kontrollera om det finns aktiva uppgifter för att visa eller gömma ul.todo-list
+  // Kontrollera om det finns aktiva uppgifter för att visa eller gömma ul.todo-list samt clearCompleted-knappen
+  updateClearCompletedButton();
   updateTodoListVisibility();
   updateItemsLeft();
 }
-
 
 // Ta bort alla färdiga anteckningar
 clearCompletedButton.addEventListener("click", clearCompleted);
@@ -108,27 +108,25 @@ function clearCompleted() {
   updateBlueButton();
 }
 
-
 //Uppdatera items left
-document.addEventListener('click', function (e){
+document.addEventListener('click', function (e) {
   let checkboxes = e.target;
-  if(checkboxes.tagName =='INPUT' && checkboxes.type == 'checkbox'){
+  if (checkboxes.tagName == 'INPUT' && checkboxes.type == 'checkbox') {
     updateItemsLeft();
   }
 });
 
-function updateItemsLeft(){ 
+function updateItemsLeft() {
   let countChecked = document.querySelectorAll("input[type=checkbox]:not(:checked)").length;
-  
+
   if (countChecked === 1) {
     itemsLeft.textContent = "1 item left";
   } else {
     itemsLeft.textContent = countChecked + " items left";
   }
   itemsLeft.hidden = (countChecked === 0);
-  
-}
 
+}
 
 //Filtrera val i choice-bar
 filterOptions.addEventListener("click", function (event) {
@@ -143,15 +141,15 @@ function filterTodos(filter) {
 
   todos.forEach(todo => {
     switch (filter) {
-      
+
       case "All":
         todo.style.display = "flex";
         break;
-      
+
       case "Active":
         todo.classList.contains("completed") ? todo.style.display = "none" : todo.style.display = "flex";
         break;
-      
+
       case "Completed":
         todo.classList.contains("completed") ? todo.style.display = "flex" : todo.style.display = "none";
         break;
@@ -166,13 +164,13 @@ function updateTodoListVisibility() {
     document.querySelectorAll(".toDo").forEach((todo) => {
       todo.style.display = "none";
     });
+
   } else {
     document.querySelectorAll(".toDo").forEach((todo) => {
       todo.style.display = "flex";
     });
   }
 }
-
 
 // Blue button
 document.addEventListener("DOMContentLoaded", function () {
@@ -202,6 +200,20 @@ function updateBlueButton() {
   updateTodoListVisibility();
 }
 
+// Funktion för att styra synligheten av ClearCompleted - knappen
+function updateClearCompletedButton() {
+  let todos = document.querySelectorAll(".toDo");
+  let oneOrMoreCompleted = false;
+
+  todos.forEach(todo => {
+    if (todo.classList.contains('completed')) {
+      oneOrMoreCompleted = true;
+    }
+  });
+
+  clearCompletedButton.style.display = oneOrMoreCompleted ? "block" : "none";
+}
+
 
 // Funktion för att markera alla som färdiga/ofärdiga
 function toggleAll() {
@@ -223,11 +235,10 @@ function toggleAll() {
     else if (!complete && todo.classList.contains('completed')) {
       todo.classList.remove('completed');
     }
-    //checkbox.checked = blueButton.checked;
-    //todo.classList.toggle('completed', blueButton.checked);
   });
 
-  // Uppdatera ul.todo-list synlighet
+  // Kontrollera om det finns aktiva uppgifter för att visa eller gömma ul.todo-list samt clearCompleted-knappen
+  updateClearCompletedButton();
   updateTodoListVisibility();
   updateItemsLeft();
 }
