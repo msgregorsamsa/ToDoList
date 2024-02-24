@@ -93,7 +93,7 @@ li.toDo-item {
 
 /* Input Focus Styling */
 #todo-input:focus {
-    box-shadow: 2px 2px 8px rgb(136, 49, 49);
+    box-shadow: 0px 1px 5px rgb(136, 49, 49);
     outline: none;
 }
 
@@ -183,6 +183,7 @@ form,
 }
 
 /* Hover Effect for Filter Button */
+.filters>li>button.active-filter,
 .filters>li>button:hover {
     border-radius: 3px;
     border: 1px solid rgba(231, 0, 0, 0.658);
