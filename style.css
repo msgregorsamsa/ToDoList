@@ -142,6 +142,7 @@ form,
     font-size: 25px;
     color: rgb(109, 109, 109);
     background-color: white;
+    justify-content: flex-start;
 }
 
 /* Todo Item Styling */
