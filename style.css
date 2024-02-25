@@ -159,6 +159,10 @@ form,
     color: rgb(182, 182, 182);
 }
 
+.clear-completed {
+    display: none;
+}
+
 /* Choices Bar and Filters Styling */
 .choices-bar,
 .filters {

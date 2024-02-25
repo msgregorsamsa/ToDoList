@@ -103,6 +103,8 @@ function clearCompleted() {
     todo.remove();
   });
 
+  clearCompletedButton.style.display = 'none'; 
+
   updateItemsLeft();
   updateBlueButton();
 }
@@ -112,7 +114,7 @@ document.addEventListener('click', function (e) {
   let checkboxes = e.target;
   if (checkboxes.tagName == 'INPUT' && checkboxes.type == 'checkbox') {
     updateItemsLeft();
-  }
+    }
 });
 
 function updateItemsLeft() {
@@ -120,11 +122,11 @@ function updateItemsLeft() {
 
   if (countChecked === 1) {
     itemsLeft.textContent = "1 item left";
-  } else {
+  } 
+  else {
     itemsLeft.textContent = countChecked + " items left";
   }
-  itemsLeft.hidden = (countChecked === 0);
-
+  itemsLeft.hidden = false;
 }
 
 //Filtrera val i choice-bar
