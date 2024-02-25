@@ -238,7 +238,6 @@ function toggleAll() {
     }
   });
 
-  // Kontrollera om det finns aktiva uppgifter för att visa eller gömma ul.todo-list samt clearCompleted-knappen
   updateClearCompletedButton();
   updateItemsLeft();
 }
