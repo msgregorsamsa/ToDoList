@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="style.css">
+    <meta name="description" content="Personal ToDo application">
+    <meta name="keywords" content="ToDoList, , HTML, CSS, JavaScript, Productivity, Tasks">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SannaAnnas ToDos</title>
 </head>
@@ -17,31 +19,32 @@
 
         <main>
             <form class="todo-form">
-                <!-- <label for="todo-input"></label> Tomma labels meningslösa? -->
                 <input type="text" id="todo-input" class="todo-input" placeholder="What needs to be done?" />
             </form>
-            
+
             <div class="content">
-            
+
                 <div class="todo-container">
                     <ul class="todo-list"></ul>
                 </div>
-                
+
                 <footer class='filter-options'>
                     <ul class='filters'>
-                        <li><p class='items-left' hidden>''</p></li>
+                        <li>
+                            <p class='items-left' hidden>''</p>
+                        </li>
                         <li><button type='button' class='all-button active-filter'>All</button></li>
                         <li><button type='button' class='active-button'>Active</button></li>
                         <li><button type='button' class='completed-button'>Completed</button></li>
                         <li><button type='button' class='clear-completed'>Clear Completed</button></li>
                     </ul>
                 </footer>
-                
+
             </div>
 
         </main>
 
-        
+
 
     </div>
 </body>

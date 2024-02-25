@@ -7,13 +7,12 @@ let filterOptions = document.querySelector(".filter-options");
 let itemsLeft = document.querySelector(".items-left");
 let content = document.querySelector(".content");
 
-
-//Variabler
+//Variables
 let blueButton;
 let userInput = "";
 
 
-//Lägg till todo:
+//Add ToDo:
 toDoForm.addEventListener("submit", addToDo);
 
 function addToDo(event) {
@@ -27,7 +26,7 @@ function addToDo(event) {
   let checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
   checkbox.name = 'checkbox';
-  checkbox.id = userInput; //For + id borde vara samma tänker jag. Funkar inte som jag tänker mig dock.
+  checkbox.id = userInput;
   checkbox.value = 'checkbox';
   checkbox.classList.add("editCheckbox");
 
@@ -57,13 +56,11 @@ function addToDo(event) {
 
   updateItemsLeft();
   updateBlueButton();
-
-  // Visa innehållet när en ny uppgift har lagts till
-  content.style.display = "block"; // Är inte detta styling och bör ligga i css? 
+  content.style.display = "block";
 }
 
 
-//Ta bort todo
+//Remove ToDo
 toDoList.addEventListener('click', deleteItem);
 
 function deleteItem(event) {
@@ -77,7 +74,7 @@ function deleteItem(event) {
   }
 }
 
-//Markera som färdigt
+//Mark As Completed
 toDoList.addEventListener('change', markAsCompleted);
 
 function markAsCompleted(event) {
@@ -85,16 +82,15 @@ function markAsCompleted(event) {
   let todoItem = checkbox.parentElement;
   todoItem.classList.toggle('completed');
 
-  // Kontrollera om det finns avklarade uppgifter för att visa eller gömma "Clear completed" knappen
   let completedTodos = document.querySelectorAll(".completed");
   clearCompletedButton.style.display = completedTodos.length > 0 ? "block" : "none";
 
-  // Kontrollera om det finns aktiva uppgifter för att visa eller gömma ul.todo-list samt clearCompleted-knappen
+  // Control if there is any completed tasks to show/hide "Clear Completed" + update "Items Left"
   updateClearCompletedButton();
   updateItemsLeft();
 }
 
-// Ta bort alla färdiga anteckningar
+// Remove all completed tasks
 clearCompletedButton.addEventListener("click", clearCompleted);
 
 function clearCompleted() {
@@ -109,7 +105,7 @@ function clearCompleted() {
   updateBlueButton();
 }
 
-//Uppdatera items left
+// Update Items Left
 document.addEventListener('click', function (e) {
   let checkboxes = e.target;
   if (checkboxes.tagName == 'INPUT' && checkboxes.type == 'checkbox') {
@@ -129,7 +125,7 @@ function updateItemsLeft() {
   itemsLeft.hidden = false;
 }
 
-//Filtrera val i choice-bar
+// Filter choices
 filterOptions.addEventListener("click", function (event) {
   if (event.target.tagName === "BUTTON") {
     let filter = event.target.textContent;
@@ -138,7 +134,7 @@ filterOptions.addEventListener("click", function (event) {
 });
 
 function filterTodos(filter) {
-  let todos = document.querySelectorAll(".toDo"); // Skulle kunna flyttas till toppen med övriga querySelectorer
+  let todos = document.querySelectorAll(".toDo");
 
   let allBtn = document.querySelector(".all-button");
   let activeBtn = document.querySelector(".active-button");
@@ -177,7 +173,7 @@ function filterTodos(filter) {
 
 
 
-// Blue button
+// Blue-button (For toggle all)
 document.addEventListener("DOMContentLoaded", function () {
 
   blueButton = document.createElement("button");
@@ -191,11 +187,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function updateBlueButton() {
-  let todos = document.querySelectorAll(".toDo"); // Skulle kunna flyttas till toppen med övriga querySelectorer
+  let todos = document.querySelectorAll(".toDo");
 
   blueButton.style.display = todos.length > 0 ? "block" : "none";
 
-  // Lägg till eller ta bort event listener beroende på om det finns todos eller inte
+  // Add or remove toggleAll-event listener depending on todo-state
   if (todos.length > 0) {
     blueButton.addEventListener("click", toggleAll);
   } else {
@@ -203,7 +199,7 @@ function updateBlueButton() {
   }
 }
 
-// Funktion för att styra synligheten av ClearCompleted - knappen
+// Clearcompleted showing or not
 function updateClearCompletedButton() {
   let todos = document.querySelectorAll(".toDo");
   let oneOrMoreCompleted = false;
@@ -217,11 +213,11 @@ function updateClearCompletedButton() {
   clearCompletedButton.style.display = oneOrMoreCompleted ? "block" : "none";
 }
 
-
-// Funktion för att markera alla som färdiga/ofärdiga
+//Toggle all tasks to completed/not completed
 function toggleAll() {
   let todos = document.querySelectorAll(".toDo");
-  // Kika om alla element är completed eller ej, utgå ifrån det
+
+  //Control if all elements is completed or not
   let complete = false;
   todos.forEach(todo => {
     if (!todo.classList.contains('completed')) {
