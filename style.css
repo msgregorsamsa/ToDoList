@@ -51,13 +51,14 @@ ul.todo-list {
     display: flex;
     flex: 1;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
+    padding: 10px;
 }
 
 /* Todo Item Styling */
 li.toDo-item {
     font-size: 20px;
-    color: #272727;
+    color: #171717;
     background-color: white;
 }
 
@@ -153,7 +154,7 @@ form,
 }
 
 /* Completed Todo Styling */
-.completed {
+.completed>li {
     text-decoration: line-through;
     color: rgb(182, 182, 182);
 }
@@ -196,10 +197,6 @@ form,
     margin-left: auto;
     border: none;
     background-color: white;    
-}
-
-.clear-completed {
-    display: none;
 }
 
 /* Blue Button Styling */
