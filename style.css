@@ -44,11 +44,12 @@ h1 {
     font-size: 60px;
     font-weight: 200;
     margin-bottom: 35px;
+    line-height: 1;
 }
 
 /* Todo List Styling */
 ul.todo-list {
-    display: flex;
+    max-width: 550px;
     flex: 1;
     flex-direction: column;
     justify-content: flex-start;
@@ -100,8 +101,8 @@ li.toDo-item {
 
 /* Todo Form Styling */
 .todo-form {
-    width: 550px;
-    max-width: 100%;
+    max-width: 550px;
+    width: 100%;
     position: relative;
 }
 
@@ -196,13 +197,11 @@ form,
 }
 
 /* Remove Button Styling */
-button.remove-button {
+.remove-button {
     font-size: 20px;
     margin-left: auto;
     border: none;
     background-color: white;
-    position:static;
-    padding-left: 21em;
 }
 
 /* Blue Button Styling */
@@ -214,32 +213,28 @@ button.remove-button {
 
 /* Edit Checkbox Styling */
 .editCheckbox {
-    height: 20px;
     width: 20px;
-    margin: auto;
+    /* margin: auto; */
     padding-right: 5px;
 }
 
 /* Media Query for Responsive Styles */
-@media screen and (max-width: 550px) {
+
+@media screen and (max-width: 375px) {
+
+    h1 {
+        font-size: 40px;
+    }
+
     body {
-        min-width: 550px;
+        min-width: 375px;
     }
 
     .todo-form {
-        width: 550px;
+        width: 375px;
     }
 
     .todo-form input {
         width: calc(100% - 60px);
     }
 }
-
-/* @media screen and (max-width: 375px) {
-
-    .content {
-        width: 375px;
-        align-content: center;
-        margin: 80px 0 10px 0;
-    }
-} */
